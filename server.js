@@ -1,14 +1,16 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const server_config = require('./configs/server.config')
+const cors = require('cors')
 const db_config = require("./configs/db.config")
 app= express()
-
+app.use(cors())
 app.use(express.json())
+
 
 mongoose.connect(db_config.URI)//where to connect
 const db = mongoose.connection//connection order
-
+console.log(db_config.URI)
 db.on('error',()=>{
     console.log("error while connecting to the database")
 })
